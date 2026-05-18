@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base styles ───────────────────────────────────────────────── */
+
+:root {
+  --bg: #000;
+  --panel: #111;
+  --panel-hover: #1a1a1a;
+  --border: #222;
+  --border-soft: #1a1a1a;
+  --text: #e8eaf0;
+  --muted: #6e7485;
+  --subtle: #333;
+  --accent: #8fb4ff;
+  --thinking: #b39ddb;
+  --tool-pending: #d7bb7d;
+  --tool-done: #8ec9a8;
+  --danger: #d98c8c;
+  --user-bg: #0f0f0f;
+  --code-bg: #0d0d18;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+/* ─── Hide scrollbars everywhere ──────────────────────────────── */
+
+* {
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
+}
+*::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari/Opera */
+}
+
+/* ─── Icon button ──────────────────────────────────────────────── */
+
+@layer components {
+  .icon-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    transition:
+      background 0.1s,
+      color 0.1s;
+    flex-shrink: 0;
+  }
+  .icon-btn:hover {
+    background: var(--panel-hover);
+    color: var(--text);
+  }
+}
+
+/* ─── Message row common ───────────────────────────────────────── */
+
+.msg-row {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4px 28px;
+}
+
+@media (max-width: 640px) {
+  .msg-row {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+/* ─── Mobile responsive ─────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .msg-row {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+/* Sidebar toggle button on mobile — always visible when sidebar is hidden */
+#sb-toggle-mobile {
+  display: none;
+}
+@media (max-width: 767px) {
+  #sb-toggle-mobile {
+    display: flex;
+  }
+}
+
+/* ─── Smooth tap highlights on mobile ───────────────────────────── */
+
+@media (hover: none) and (pointer: coarse) {
+  .icon-btn,
+  button,
+  .nav-row,
+  .session-row {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+
+
+/* ─── Collapsible base (used by thinking & tool blocks) ────────── */
+
+.collapsible {
+  margin: 3px 0;
+}
+
+.collapsible .coll-body {
+  display: none;
+}
+.collapsible.open .coll-body {
+  display: block;
+}
+
+/* ─── Syntax highlight theme overrides ─────────────────────────── */
+
+.hljs {
+  background: transparent !important;
+  padding: 0 !important;
+}
